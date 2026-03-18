@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Conhecimento - South</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="js/script.js" defer></script>
+</head>
+<body>
 
+<div class="container">
+    <h1>📚 Central de Passos a Passos</h1>
+
+    <div class="form-group">
+        <h3>➕ Cadastrar Novo Processo</h3>
+        <select id="empresaCadastro">
+            <option value="Aesy">Aesy</option>
+            <option value="Plamev">Plamev</option>
+            <option value="Premium">Premium</option>
+        </select>
+        <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
+        <button onclick="salvarPasso()">Salvar no Sistema</button>
+    </div>
+
+    <hr>
+
+    <div class="filtros">
+        <select id="filtroEmpresa" onchange="renderizarLista()">
+            <option value="todos">Selecione uma Empresa</option>
+            <option value="Aesy">Aesy</option>
+            <option value="Plamev">Plamev</option>
+            <option value="Premium">Premium</option>
+        </select>
+    </div>
+
+    <div id="listaContainer">
+        </div>
+</div>
+
+</body>
+</html>
