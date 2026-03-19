@@ -1,129 +1,243 @@
+/* =========================================
+   PALETA DE CORES OFICIAL DA CENTRAL
+   ========================================= */
 :root {
-    --primary: #0056b3;
-    --primary-hover: #004494;
-    --bg: #f0f2f5;
-    --white: #ffffff;
-    --text: #1c1e21;
-    --gray: #65676b;
-    --radius: 12px;
-    --shadow: 0 8px 24px rgba(0,0,0,0.08);
+    --primary-south-blue: #004a99; /* Azul South oficial */
+    --main-bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --radius-lg: 12px;
+    --radius-sm: 6px;
+    --shadow-md: 0 6px 15px rgba(0,0,0,0.06);
+    
+    /* CORES DAS EMPRESAS (Solicitadas) */
+    --color-plamev: #001f3f;       /* Azul Escuro Noturno */
+    --color-aesy: #d1d5db;         /* Cinza Médio */
+    --color-aesy-text: #1f2937;   /* Texto Cinza Escuro para contraste */
+    --color-premium: #166534;     /* Verde Vibrante da Imagem Anexa */
 }
 
 * { box-sizing: border-box; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-main);
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
 }
 
-.container {
+.main-wrapper {
     width: 100%;
-    max-width: 600px;
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    max-width: 900px;
+}
+
+/* Cabeçalho */
+.header-south {
+    background: #ffffff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--radius-lg);
+    border-bottom: 5px solid var(--primary-south-blue);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+}
+
+.logo-img {
+    height: 70px;
+    margin-bottom: 15px;
 }
 
 h1 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--primary);
+    color: var(--primary-south-blue);
+    font-size: 26px;
+    margin: 0;
+}
+
+/* Container de Cards */
+.container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.card-cadastro {
-    background: #fafafa;
-    padding: 20px;
-    border-radius: var(--radius);
-    border: 1px dashed #ccc;
-    margin-bottom: 30px;
+/* Estilo Geral dos Cards */
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
 }
 
-h3 { margin-top: 0; font-size: 16px; color: var(--gray); }
+h3 {
+    margin-top: 0;
+    color: #666;
+    font-size: 17px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
 
-select, input {
+/* Inputs, Selects, Textareas e Botões */
+input, select, textarea {
     width: 100%;
-    padding: 12px 15px;
+    padding: 14px;
     margin: 10px 0;
-    border: 1.5px solid #e4e6eb;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #ddd;
     font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
+    transition: 0.2s;
 }
 
-select:focus, input:focus { border-color: var(--primary); }
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-south-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 74, 153, 0.1);
+}
 
 button {
     width: 100%;
-    padding: 14px;
-    background: var(--primary);
+    padding: 15px;
+    background-color: var(--primary-south-blue);
     color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 10px;
+    border: none;
+    border-radius: var(--radius-sm);
+    transition: 0.3s;
+    font-size: 16px;
 }
 
-button:hover { background: var(--primary-hover); }
+button:hover {
+    background-color: #003366;
+}
 
-.header-lista {
+/* Filtros */
+.filtros-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--bg);
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.lista-passos { margin-top: 20px; }
+.filtros-container select { flex: 1 1 200px; }
+.filtros-container input { flex: 2 1 300px; }
 
-.passo-item {
-    background: var(--white);
-    border: 1px solid #e4e6eb;
-    padding: 16px;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
+/* =========================================
+   ESTILOS ESPECÍFICOS DAS EMPRESAS
+   ========================================= */
 
-.passo-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.badge {
-    font-size: 11px;
-    font-weight: 700;
+/* 1️⃣ Nos Cards da Lista (Etiquetas/Badges) */
+.tag {
+    font-size: 12px;
+    font-weight: bold;
     text-transform: uppercase;
-    padding: 4px 8px;
+    padding: 6px 12px;
     border-radius: 4px;
-    width: fit-content;
+    display: inline-block;
 }
 
-.badge-plamev { background: #e7f3ff; color: #1877f2; }
-.badge-aesy { background: #fef2f2; color: #dc2626; }
-.badge-premium { background: #f0fdf4; color: #16a34a; }
+.badge-plamev {
+    background-color: var(--color-plamev);
+    color: white;
+}
 
-.passo-titulo { font-weight: 600; color: var(--text); }
+.badge-aesy {
+    background-color: var(--color-aesy);
+    color: var(--color-aesy-text);
+}
 
-@media (max-width: 480px) {
+.badge-premium {
+    background-color: var(--color-premium);
+    color: white;
+}
+
+/* 2️⃣ Dentro do Menu Suspenso (Select - Opções)
+   ⚠️ NOTA: O visual varia de acordo com o navegador (Chrome, Safari, etc.) */
+.opt-plamev {
+    background-color: var(--color-plamev);
+    color: white;
+    font-weight: bold;
+}
+
+.opt-aesy {
+    background-color: var(--color-aesy);
+    color: var(--color-aesy-text);
+    font-weight: bold;
+}
+
+.opt-premium {
+    background-color: var(--color-premium);
+    color: white;
+    font-weight: bold;
+}
+
+/* =========================================
+   ESTILO DA LISTA DE CARDS
+   ========================================= */
+.passo-card {
+    background: #fff;
+    border-left: 8px solid; /* A cor é definida dinamicamente pelo JS */
+    padding: 25px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+
+.passo-card:hover { transform: translateX(5px); }
+.passo-titulo { font-size: 1.3em; font-weight: bold; color: #1a1a1a; margin-top: 10px; }
+
+/* Área de Ações nos Cards */
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+}
+
+.btn-action {
+    padding: 8px 16px;
+    font-size: 0.9em;
+    width: auto;
+    margin: 0;
+}
+
+.btn-edit { background-color: #28a745; }
+.btn-edit:hover { background-color: #218838; }
+
+.btn-delete { background-color: #dc3545; }
+.btn-delete:hover { background-color: #c82333; }
+
+/* Estilos do Pop-up (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center; align-items: center;
+}
+
+.modal-content {
+    background-color: #fff; padding: 40px; border-radius: var(--radius-lg);
+    width: 90%; max-width: 650px; position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.close-modal { position: absolute; top: 15px; right: 20px; font-size: 30px; font-weight: bold; color: #aaa; cursor: pointer; }
+.close-modal:hover { color: #333; }
+.modal-body { margin: 25px 0; font-size: 16px; line-height: 1.6; white-space: pre-wrap; color: #444; }
+
+/* Responsividade Básica */
+@media (max-width: 600px) {
     body { padding: 10px; }
-    .container { padding: 25px 15px; }
-    h1 { font-size: 20px; }
+    .card, .header-south { padding: 20px; }
+    h1 { font-size: 22px; }
+    .filtros-container { gap: 8px; }
 }

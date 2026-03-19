@@ -3,41 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de Conhecimento - South</title>
+    <title>Base de Conhecimento - South Tecnologia</title>
     
     <link rel="stylesheet" href="css/style.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/script.js" defer></script>
 </head>
 <body>
 
-<div class="container">
-    <h1>📚 Central de Passos a Passos</h1>
+<div class="main-wrapper">
+    <header class="header-south">
+        <img src="logo.png" alt="South Tecnologia" class="logo-img">
+        <h1>Central de Passos a Passos</h1>
+    </header>
 
-    <div class="form-group">
-        <h3>➕ Cadastrar Novo Processo</h3>
-        <select id="empresaCadastro">
-            <option value="Aesy">Aesy</option>
-            <option value="Plamev">Plamev</option>
-            <option value="Premium">Premium</option>
-        </select>
-        <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
-        <button onclick="salvarPasso()">Salvar no Sistema</button>
-    </div>
-
-    <hr>
-
-    <div class="filtros">
-        <select id="filtroEmpresa" onchange="renderizarLista()">
-            <option value="todos">Selecione uma Empresa</option>
-            <option value="Aesy">Aesy</option>
-            <option value="Plamev">Plamev</option>
-            <option value="Premium">Premium</option>
-        </select>
-    </div>
-
-    <div id="listaContainer">
+    <div class="container">
+        <div class="card card-cadastro">
+            <h3 id="formTitle">➕ Cadastrar Novo Processo</h3>
+           <select id="empresaCadastro">
+    <option value="Aesy" class="opt-aesy">Aesy</option>
+    <option value="Plamev" class="opt-plamev">Plamev</option>
+    <option value="Premium" class="opt-premium">Premium</option>
+</select>
+            
+            <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
+            
+            <textarea id="descricaoProcesso" placeholder="Escreva o passo a passo detalhado aqui..." rows="6" style="width: 100%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; resize: vertical;"></textarea>
+            
+            <div style="display: flex; gap: 10px;">
+                <button id="saveUpdateBtn" onclick="handleSaveUpdate()">Salvar no Sistema</button>
+                <button id="cancelEditBtn" onclick="cancelarEdicao()" style="background-color: #666; display: none;">Cancelar</button>
+            </div>
         </div>
+
+        <div class="card card-filtros">
+            <h3>🔍 Filtrar e Pesquisar</h3>
+            <div class="filtros-container">
+                <select id="filtroEmpresa" onchange="renderizarLista()">
+    <option value="todos">Selecione uma Empresa</option>
+    <option value="Aesy" class="opt-aesy">Aesy</option>
+    <option value="Plamev" class="opt-plamev">Plamev</option>
+    <option value="Premium" class="opt-premium">Premium</option>
+</select>
+                <input type="text" id="buscaProcesso" placeholder="🔍 Digite para buscar (ex: categoria, carro...)" onkeyup="renderizarLista()">
+            </div>
+        </div>
+
+        <div id="listaContainer">
+            </div>
+    </div>
+</div>
+
+<div id="modalVisualizar" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="fecharModal()">&times;</span>
+        <span id="modalTag" class="tag" style="margin-bottom: 10px; display: inline-block;">Empresa</span>
+        <h2 id="modalTitulo" style="color: #004a99; margin-top: 5px;">Título do Passo a Passo</h2>
+        
+        <div id="modalDescricao" class="modal-body">
+            </div>
+        
+        <button class="btn-copiar" onclick="copiarConteudo()">📋 Copiar Passo a Passo</button>
+    </div>
 </div>
 
 </body>
