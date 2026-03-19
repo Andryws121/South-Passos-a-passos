@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base de Conhecimento - South Tecnologia</title>
-    
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/script.js" defer></script>
@@ -17,10 +16,15 @@
         <h2 style="color: #1e3a8a; margin-bottom: 10px; font-weight: 800;">Acesso Restrito</h2>
         <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Digite a senha do setor para acessar a Central.</p>
         
-        <input type="password" id="senhaAdmin" placeholder="Senha de Acesso" style="text-align: center; font-size: 18px; letter-spacing: 3px; border: 1.5px solid #e2e8f0; padding: 15px; width: 100%; border-radius: 8px; background: #f8fafc; color: #333;">
-        
-        <button onclick="verificarAcesso()" style="margin-top: 15px; width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); transition: all 0.2s ease;">Entrar no Sistema</button>
-        
+        <form id="formLoginSetor" onsubmit="event.preventDefault(); verificarAcesso();">
+            <input type="text" name="username" value="Setor South" style="display:none;" autocomplete="username">
+            <div style="position: relative; width: 100%;">
+                <input type="password" id="senhaAdmin" name="password" placeholder="Senha de Acesso" autocomplete="current-password" 
+                       style="text-align: center; font-size: 18px; letter-spacing: 3px; border: 1.5px solid #e2e8f0; padding: 15px; width: 100%; border-radius: 8px; background: #f8fafc; color: #333; padding-right: 45px;">
+                <span id="togglePassword" onclick="alternarSenha()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px; color: #64748b; user-select: none;">👁️</span>
+            </div>
+            <button type="submit" style="margin-top: 15px; width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">Entrar no Sistema</button>
+        </form>
         <p id="erroSenha" style="color: #ef4444; font-size: 13px; margin-top: 10px; display: none; font-weight: bold;">❌ Senha incorreta!</p>
     </div>
 </div>
@@ -59,7 +63,6 @@
                 <input type="text" id="buscaProcesso" placeholder="🔍 Digite para buscar..." onkeyup="renderizarLista()">
             </div>
         </div>
-
         <div id="listaContainer"></div>
     </div>
 </div>
@@ -73,6 +76,5 @@
         <button class="btn-copiar" onclick="copiarConteudo()">📋 Copiar Passo a Passo</button>
     </div>
 </div>
-
 </body>
 </html>

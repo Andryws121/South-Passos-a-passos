@@ -1,266 +1,41 @@
-/* =========================================
-   PALETA DE CORES E VARIÁVEIS (Moderno)
-   ========================================= */
 :root {
-    --primary-south-blue: #2563eb; /* Azul moderno para botões principais */
-    --main-bg: #e0f2fe; /* Azul BEM claro e suave para o fundo do site */
-    --card-bg: #ffffff; /* Fundo branco para os quadros */
-    --text-main: #333333;
-    
-    --radius-lg: 16px; /* Bordas bem arredondadas (Moderno) */
+    --primary-south-blue: #2563eb;
+    --main-bg: #e0f2fe;
+    --card-bg: #ffffff;
+    --radius-lg: 16px;
     --radius-sm: 8px;
-    --shadow-sm: 0 4px 6px rgba(0,0,0,0.04);
-    --shadow-md: 0 10px 25px rgba(0,0,0,0.08); /* Sombra difusa e elegante */
-    
-    /* AS NOVAS CORES DAS EMPRESAS */
-    --color-plamev: #1e3a8a;       /* Azul Escuro */
-    --color-aesy: #6b7280;         /* Cinza Profissional */
-    --color-premium: #f97316;      /* Laranja Vibrante */
+    --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+    --color-plamev: #1e3a8a;
+    --color-aesy: #6b7280;
+    --color-premium: #f97316;
 }
 
 * { box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); margin: 0; padding: 30px 20px; display: flex; justify-content: center; }
+.main-wrapper { width: 100%; max-width: 1000px; }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--main-bg); 
-    color: var(--text-main);
-    margin: 0;
-    padding: 30px 20px;
-    display: flex;
-    justify-content: center;
-}
+.header-south { padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
+.logo-img { height: 90px; width: 90px; border-radius: 50%; background-color: #fff; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: contain; }
+h1 { color: #1e3a8a; font-size: 28px; margin-top: 15px; font-weight: 800; }
 
-.main-wrapper {
-    width: 100%;
-    max-width: 1000px;
-}
+.card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 25px; }
+h3 { margin-top: 0; color: #444; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
 
-/* =========================================
-   CABEÇALHO E LOGO COM SOMBRA
-   ========================================= */
-.header-south {
-    background: transparent; /* Removemos o quadro branco do fundo do título */
-    padding: 10px 20px 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-}
+input, select, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: var(--radius-sm); border: 1.5px solid #e2e8f0; background-color: #f8fafc; font-size: 16px; }
+button { width: 100%; padding: 15px; background: var(--primary-south-blue); color: white; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.2s; }
+button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,235,0.2); }
 
-/* A Logo Redonda e Sombreada */
-.logo-img {
-    height: 90px; 
-    width: 90px;  
-    margin-bottom: 15px;
-    border-radius: 50%; /* Círculo perfeito */
-    background-color: #ffffff; /* Fundo branco para destacar a logo */
-    object-fit: contain; 
-    padding: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* 👈 Sombra moderna aqui */
-    border: 1px solid rgba(0,0,0,0.05);
-}
+.filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
+.tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
+.badge-plamev { background: var(--color-plamev); }
+.badge-aesy { background: var(--color-aesy); }
+.badge-premium { background: var(--color-premium); }
 
-h1 {
-    color: #1e3a8a;
-    font-size: 28px;
-    margin: 0;
-    text-align: center;
-    font-weight: 800;
-}
+.passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
+.passo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-/* =========================================
-   CONTAINER E CARDS
-   ========================================= */
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 25px; 
-}
+.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 15px; }
+.modal-content { background: #fff; padding: 35px; border-radius: var(--radius-lg); width: 100%; max-width: 650px; position: relative; }
+.modal-body { background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; white-space: pre-wrap; }
 
-.card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: var(--radius-lg); 
-    box-shadow: var(--shadow-md);   
-    border: 1px solid rgba(255,255,255,0.5); /* Efeito de borda de vidro */
-}
-
-h3 {
-    margin-top: 0;
-    color: #444;
-    font-size: 18px;
-    border-bottom: 2px solid #f1f5f9;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-/* Campos de digitação e botões */
-input, select, textarea {
-    width: 100%;
-    padding: 15px; 
-    margin: 10px 0 15px 0;
-    border-radius: var(--radius-sm); 
-    border: 1.5px solid #e2e8f0; 
-    background-color: #f8fafc; 
-    font-size: 16px; 
-    transition: 0.3s ease;
-    color: #333;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: var(--primary-south-blue);
-    background-color: #fff;
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); 
-}
-
-button {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--primary-south-blue);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
-    font-size: 16px;
-    box-shadow: var(--shadow-sm);
-}
-
-button:hover { 
-    background-color: #1d4ed8; 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
-}
-
-/* Filtros */
-.filtros-container {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap; 
-}
-
-.filtros-container select { flex: 1 1 200px; }
-.filtros-container input { flex: 2 1 250px; }
-
-/* =========================================
-   ETIQUETAS (TAGS) DAS EMPRESAS
-   ========================================= */
-.tag {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 20px; /* Formato de Pílula (Arredondado) */
-    display: inline-block;
-    letter-spacing: 0.5px;
-}
-
-/* Cores atualizadas e texto branco para todas para dar contraste */
-.badge-plamev { background-color: var(--color-plamev); color: #ffffff; }
-.badge-aesy { background-color: var(--color-aesy); color: #ffffff; }
-.badge-premium { background-color: var(--color-premium); color: #ffffff; }
-
-.opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
-.opt-aesy { background-color: var(--color-aesy); color: white; font-weight: bold; }
-.opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
-
-/* =========================================
-   LISTA DE CARDS (Passos a Passos)
-   ========================================= */
-.passo-card {
-    background: #fff;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid #f1f5f9;
-}
-
-.passo-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px); /* Efeito de levitar */
-}
-
-.passo-titulo { 
-    font-size: 1.3em; 
-    font-weight: bold; 
-    color: #1e293b; 
-    margin-top: 15px; 
-}
-
-/* Área de Ações nos Cards */
-.card-actions {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 10px;
-    margin-top: 20px;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 15px;
-}
-
-.btn-action {
-    flex: 1; 
-    min-width: 100px; 
-    padding: 10px;
-    font-size: 0.9em;
-    margin: 0;
-    border-radius: 6px;
-    box-shadow: none;
-}
-
-.btn-action:hover { transform: translateY(-1px); }
-
-.btn-view { background-color: #f8fafc; color: #334155; border: 1px solid #e2e8f0; }
-.btn-view:hover { background-color: #e2e8f0; color: #0f172a; box-shadow: none; }
-.btn-edit { background-color: #22c55e; }
-.btn-edit:hover { background-color: #16a34a; box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3); }
-.btn-delete { background-color: #ef4444; }
-.btn-delete:hover { background-color: #dc2626; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3); }
-
-/* =========================================
-   POP-UP (MODAL)
-   ========================================= */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(15, 23, 42, 0.6); /* Fundo um pouco mais elegante */
-    backdrop-filter: blur(3px); /* Efeito de desfoque no fundo (moderno) */
-    justify-content: center; align-items: center;
-    padding: 15px; 
-}
-
-.modal-content {
-    background-color: #fff; 
-    padding: 35px; 
-    border-radius: var(--radius-lg);
-    width: 100%; 
-    max-width: 650px; 
-    position: relative;
-    max-height: 90vh; 
-    overflow-y: auto; 
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.close-modal { position: absolute; top: 15px; right: 25px; font-size: 30px; font-weight: bold; color: #94a3b8; cursor: pointer; transition: 0.2s;}
-.close-modal:hover { color: #0f172a; }
-.modal-body { margin: 25px 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap; color: #334155; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;}
-
-.btn-copiar { background-color: #0ea5e9; font-size: 15px; }
-.btn-copiar:hover { background-color: #0284c7; box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3); }
-
-/* =========================================
-   📱 RESPONSIVIDADE (CELULAR)
-   ========================================= */
-@media (max-width: 768px) {
-    body { padding: 10px; }
-    .card { padding: 20px; }
-    h1 { font-size: 22px; }
-    .filtros-container select, .filtros-container input { flex: 1 1 100%; }
-    .card-actions { flex-direction: column; }
-    .btn-action { width: 100%; }
-}
+@media (max-width: 768px) { .filtros-container select, .filtros-container input { flex: 1 1 100%; } }
