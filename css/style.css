@@ -12,11 +12,31 @@
 
 * { box-sizing: border-box; }
 body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); margin: 0; padding: 30px 20px; display: flex; justify-content: center; }
-.main-wrapper { width: 100%; max-width: 1000px; }
+
+/* Aumentei a largura para caber as duas colunas confortavelmente */
+.main-wrapper { width: 100%; max-width: 1200px; } 
 
 .header-south { padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
 .logo-img { height: 90px; width: 90px; border-radius: 50%; background-color: #fff; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: contain; }
 h1 { color: #1e3a8a; font-size: 28px; margin-top: 15px; font-weight: 800; }
+
+/* ====== GRID LADO A LADO ====== */
+.container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 0 0 400px; /* Largura fixa do formulário */
+    position: sticky; /* O formulário acompanha a tela quando rolar para baixo */
+    top: 30px;
+}
+
+.right-column {
+    flex: 1; /* A lista ocupa o restante do espaço */
+    min-width: 0;
+}
 
 .card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 25px; }
 h3 { margin-top: 0; color: #444; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
@@ -37,21 +57,18 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 15px; }
 .modal-content { background: #fff; padding: 35px; border-radius: var(--radius-lg); width: 100%; max-width: 650px; position: relative; }
 .modal-body { background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; white-space: pre-wrap; }
+.close-modal { position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; }
+.close-modal:hover { color: #333; }
 
-@media (max-width: 768px) { .filtros-container select, .filtros-container input { flex: 1 1 100%; } }
-/* ====== CORES DE FUNDO DAS OPÇÕES DE SELEÇÃO ====== */
-.opt-aesy { 
-    background-color: var(--color-aesy); 
-    color: white; 
-    font-weight: bold; 
-}
-.opt-plamev { 
-    background-color: var(--color-plamev); 
-    color: white; 
-    font-weight: bold; 
-}
-.opt-premium { 
-    background-color: var(--color-premium); 
-    color: white; 
-    font-weight: bold; 
+/* ====== CORES DE FUNDO DAS OPÇÕES ====== */
+.opt-aesy { background-color: var(--color-aesy); color: white; font-weight: bold; }
+.opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
+.opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
+
+/* ====== RESPONSIVO PARA CELULAR (Junta tudo em 1 coluna de novo) ====== */
+@media (max-width: 900px) {
+    .container { flex-direction: column; gap: 0px; }
+    .left-column { flex: none; width: 100%; position: static; }
+    .right-column { width: 100%; }
+    .filtros-container select, .filtros-container input { flex: 1 1 100%; }
 }

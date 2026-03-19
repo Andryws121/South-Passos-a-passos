@@ -17,7 +17,7 @@
         <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Digite a senha do setor para acessar a Central.</p>
         
         <form id="formLoginSetor" onsubmit="event.preventDefault(); verificarAcesso();">
-            <input type="text" name="username" value="Setor South" style="display:none;" autocomplete="username">
+            <input type="text" name="username" value="Setor_South" autocomplete="username" style="position: absolute; opacity: 0; left: -9999px;">
             <div style="position: relative; width: 100%;">
                 <input type="password" id="senhaAdmin" name="password" placeholder="Senha de Acesso" autocomplete="current-password" 
                        style="text-align: center; font-size: 18px; letter-spacing: 3px; border: 1.5px solid #e2e8f0; padding: 15px; width: 100%; border-radius: 8px; background: #f8fafc; color: #333; padding-right: 45px;">
@@ -30,40 +30,48 @@
 </div>
 
 <div class="main-wrapper" style="display: none;">
-    <header class="header-south">
+    <header class="header-south" style="position: relative; width: 100%;">
+        <button onclick="sairDoSistema()" style="position: absolute; right: 10px; top: 0; width: auto; padding: 10px 20px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.2s;">🚪 Sair</button>
+        
         <img src="logo.png" alt="South Tecnologia" class="logo-img">
-        <h1>Central de Passos a Passos</h1>
+        <h1 style="text-align: center;">Central de Passos a Passos</h1>
     </header>
 
     <div class="container">
-        <div class="card card-cadastro">
-            <h3 id="formTitle">➕ Cadastrar Novo Processo</h3>
-            <select id="empresaCadastro">
-                <option value="Aesy" class="opt-aesy">Aesy</option>
-                <option value="Plamev" class="opt-plamev">Plamev</option>
-                <option value="Premium" class="opt-premium">Premium</option>
-            </select>
-            <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
-            <textarea id="descricaoProcesso" placeholder="Escreva o passo a passo detalhado aqui..." rows="6"></textarea>
-            <div style="display: flex; gap: 10px;">
-                <button id="saveUpdateBtn" onclick="handleSaveUpdate()">Salvar no Sistema</button>
-                <button id="cancelEditBtn" onclick="cancelarEdicao()" style="background-color: #666; display: none;">Cancelar</button>
-            </div>
-        </div>
-
-        <div class="card card-filtros">
-            <h3>🔍 Filtrar e Pesquisar</h3>
-            <div class="filtros-container">
-                <select id="filtroEmpresa" onchange="renderizarLista()">
-                    <option value="todos">Selecione uma Empresa</option>
+        
+        <div class="left-column">
+            <div class="card card-cadastro">
+                <h3 id="formTitle">➕ Cadastrar Novo Processo</h3>
+                <select id="empresaCadastro">
                     <option value="Aesy" class="opt-aesy">Aesy</option>
                     <option value="Plamev" class="opt-plamev">Plamev</option>
                     <option value="Premium" class="opt-premium">Premium</option>
                 </select>
-                <input type="text" id="buscaProcesso" placeholder="🔍 Digite para buscar..." onkeyup="renderizarLista()">
+                <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
+                <textarea id="descricaoProcesso" placeholder="Escreva o passo a passo detalhado aqui..." rows="10"></textarea>
+                <div style="display: flex; gap: 10px;">
+                    <button id="saveUpdateBtn" onclick="handleSaveUpdate()">Salvar no Sistema</button>
+                    <button id="cancelEditBtn" onclick="cancelarEdicao()" style="background-color: #666; display: none;">Cancelar</button>
+                </div>
             </div>
         </div>
-        <div id="listaContainer"></div>
+
+        <div class="right-column">
+            <div class="card card-filtros">
+                <h3 style="margin-bottom: 15px;">🔍 Filtrar e Pesquisar</h3>
+                <div class="filtros-container">
+                    <select id="filtroEmpresa" onchange="renderizarLista()">
+                        <option value="todos">Selecione uma Empresa</option>
+                        <option value="Aesy" class="opt-aesy">Aesy</option>
+                        <option value="Plamev" class="opt-plamev">Plamev</option>
+                        <option value="Premium" class="opt-premium">Premium</option>
+                    </select>
+                    <input type="text" id="buscaProcesso" placeholder="🔍 Digite para buscar..." onkeyup="renderizarLista()">
+                </div>
+            </div>
+            <div id="listaContainer"></div>
+        </div>
+
     </div>
 </div>
 

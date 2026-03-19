@@ -6,7 +6,7 @@ const clienteSupabase = supabase.createClient(supabaseUrl, supabaseKey);
 const SENHA_CORRETA = "South@1234";
 let editingId = null;
 
-// ====== SISTEMA DE LOGIN ======
+// ====== SISTEMA DE LOGIN E SAÍDA ======
 function verificarAcesso() {
     const senhaDigitada = document.getElementById('senhaAdmin').value;
     if (senhaDigitada === SENHA_CORRETA) {
@@ -30,6 +30,16 @@ function alternarSenha() {
 function liberarSite() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.querySelector('.main-wrapper').style.display = 'block';
+    document.getElementById('erroSenha').style.display = 'none';
+}
+
+function sairDoSistema() {
+    sessionStorage.removeItem('adminLogado');
+    const campoSenha = document.getElementById('senhaAdmin');
+    if(campoSenha) campoSenha.value = "";
+    document.getElementById('erroSenha').style.display = 'none';
+    document.querySelector('.main-wrapper').style.display = 'none';
+    document.getElementById('loginOverlay').style.display = 'flex';
 }
 
 // ====== FUNÇÕES DE CADASTRO E EDIÇÃO ======
@@ -100,7 +110,6 @@ async function renderizarLista() {
     container.innerHTML = passos.length ? "" : "<p style='text-align:center;'>Nenhum item encontrado.</p>";
     
     passos.forEach(item => {
-        // Cores restauradas direto no código para não depender de falhas de CSS
         container.innerHTML += `
             <div class="passo-card" data-id="${item.id}" style="background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <span class="tag badge-${item.empresa.toLowerCase()}">${item.empresa}</span>
@@ -150,6 +159,10 @@ async function editarPasso(id) {
 
 // ====== INICIALIZAÇÃO ======
 document.addEventListener('DOMContentLoaded', () => {
-    if (sessionStorage.getItem('adminLogado') === 'true') liberarSite();
+    if (sessionStorage.getItem('adminLogado') === 'true') {
+        liberarSite();
+    } else {
+        document.querySelector('.main-wrapper').style.display = 'none';
+    }
     renderizarLista();
 });
