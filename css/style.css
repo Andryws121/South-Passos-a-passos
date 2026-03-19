@@ -13,12 +13,60 @@
 * { box-sizing: border-box; }
 body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); margin: 0; padding: 30px 20px; display: flex; justify-content: center; }
 
-/* Aumentei a largura para caber as duas colunas confortavelmente */
 .main-wrapper { width: 100%; max-width: 1200px; } 
 
-.header-south { padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
-.logo-img { height: 90px; width: 90px; border-radius: 50%; background-color: #fff; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: contain; }
-h1 { color: #1e3a8a; font-size: 28px; margin-top: 15px; font-weight: 800; }
+/* ====== NOVO HEADER HORIZONTAL ====== */
+.header-south {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 20px 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-south .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-south .logo-img {
+    height: 50px; /* Tamanho menor e mais discreto */
+    width: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 8px; /* Padding menor */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: contain;
+}
+
+.header-south h1 {
+    color: #1e3a8a;
+    font-size: 20px; /* Fonte menor */
+    font-weight: 800;
+    margin: 0;
+}
+
+/* ====== BOTÃO SAIR ESTILIZADO ====== */
+.btn-logout {
+    width: auto;
+    padding: 8px 16px;
+    background: transparent; /* Fundo transparente */
+    border: 1.5px solid #ef4444; /* Borda vermelha */
+    color: #ef4444; /* Texto vermelho */
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px; /* Fonte menor */
+    transition: 0.2s;
+    box-shadow: none; /* Remove a sombra */
+}
+
+.btn-logout:hover {
+    background: rgba(239, 68, 68, 0.1); /* Fundo vermelho suave no hover */
+}
 
 /* ====== GRID LADO A LADO ====== */
 .container {
@@ -48,7 +96,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
 .tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
 .badge-plamev { background: var(--color-plamev); }
-.badge-aesy { background: var(--color-aesy); }
+.badge-aeasy { background: var(--color-aesy); }
 .badge-premium { background: var(--color-premium); }
 
 .passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
@@ -61,14 +109,15 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .close-modal:hover { color: #333; }
 
 /* ====== CORES DE FUNDO DAS OPÇÕES ====== */
-.opt-aesy { background-color: var(--color-aesy); color: white; font-weight: bold; }
+.opt-aeasy { background-color: var(--color-aesy); color: white; font-weight: bold; }
 .opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
 .opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
 
-/* ====== RESPONSIVO PARA CELULAR (Junta tudo em 1 coluna de novo) ====== */
+/* ====== RESPONSIVO PARA CELULAR ====== */
 @media (max-width: 900px) {
     .container { flex-direction: column; gap: 0px; }
     .left-column { flex: none; width: 100%; position: static; }
     .right-column { width: 100%; }
     .filtros-container select, .filtros-container input { flex: 1 1 100%; }
+}
 }
