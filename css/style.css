@@ -8,7 +8,7 @@
     --color-plamev: #1e3a8a;
     --color-aeasy: #6b7280;
     --color-premium: #f97316;
-    --color-meep: #ef4444; /* Nova cor Meep (Vermelho Profissional) */
+    --color-meep: #ef4444; 
 }
 
 * { box-sizing: border-box; }
@@ -97,9 +97,9 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
 .tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
 .badge-plamev { background: var(--color-plamev); }
-.badge-aeasy { background: var(--color-aeasy); } /* Ajuste Aeasy */
+.badge-aeasy { background: var(--color-aeasy); } 
 .badge-premium { background: var(--color-premium); }
-.badge-meep { background: var(--color-meep); } /* Nova Tag Meep */
+.badge-meep { background: var(--color-meep); } 
 
 .passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
 .passo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
@@ -114,7 +114,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .opt-aeasy { background-color: var(--color-aeasy); color: white; font-weight: bold; }
 .opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
 .opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
-.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; } /* Novo Fundo Meep */
+.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; }
 
 /* ====== RESPONSIVO PARA CELULAR ====== */
 @media (max-width: 900px) {
