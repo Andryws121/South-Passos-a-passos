@@ -6,19 +6,68 @@
     --radius-sm: 8px;
     --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
     --color-plamev: #1e3a8a;
-    --color-aesy: #6b7280;
+    --color-aeasy: #6b7280;
     --color-premium: #f97316;
+    --color-meep: #ef4444; /* Nova cor Meep (Vermelho Profissional) */
 }
 
 * { box-sizing: border-box; }
 body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); margin: 0; padding: 30px 20px; display: flex; justify-content: center; }
 
-/* Aumentei a largura para caber as duas colunas confortavelmente */
 .main-wrapper { width: 100%; max-width: 1200px; } 
 
-.header-south { padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
-.logo-img { height: 90px; width: 90px; border-radius: 50%; background-color: #fff; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: contain; }
-h1 { color: #1e3a8a; font-size: 28px; margin-top: 15px; font-weight: 800; }
+/* ====== NOVO HEADER HORIZONTAL ====== */
+.header-south {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 20px 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-south .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-south .logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    object-fit: contain;
+}
+
+.header-south h1 {
+    color: #1e3a8a;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+}
+
+/* ====== BOTÃO SAIR ESTILIZADO ====== */
+.btn-logout {
+    width: auto;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1.5px solid #ef4444;
+    color: #ef4444;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+    box-shadow: none;
+}
+
+.btn-logout:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
 
 /* ====== GRID LADO A LADO ====== */
 .container {
@@ -28,13 +77,13 @@ h1 { color: #1e3a8a; font-size: 28px; margin-top: 15px; font-weight: 800; }
 }
 
 .left-column {
-    flex: 0 0 400px; /* Largura fixa do formulário */
-    position: sticky; /* O formulário acompanha a tela quando rolar para baixo */
+    flex: 0 0 400px;
+    position: sticky;
     top: 30px;
 }
 
 .right-column {
-    flex: 1; /* A lista ocupa o restante do espaço */
+    flex: 1;
     min-width: 0;
 }
 
@@ -48,8 +97,9 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
 .tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
 .badge-plamev { background: var(--color-plamev); }
-.badge-aesy { background: var(--color-aesy); }
+.badge-aeasy { background: var(--color-aeasy); } /* Ajuste Aeasy */
 .badge-premium { background: var(--color-premium); }
+.badge-meep { background: var(--color-meep); } /* Nova Tag Meep */
 
 .passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
 .passo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
@@ -61,11 +111,12 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .close-modal:hover { color: #333; }
 
 /* ====== CORES DE FUNDO DAS OPÇÕES ====== */
-.opt-aesy { background-color: var(--color-aesy); color: white; font-weight: bold; }
+.opt-aeasy { background-color: var(--color-aeasy); color: white; font-weight: bold; }
 .opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
 .opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
+.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; } /* Novo Fundo Meep */
 
-/* ====== RESPONSIVO PARA CELULAR (Junta tudo em 1 coluna de novo) ====== */
+/* ====== RESPONSIVO PARA CELULAR ====== */
 @media (max-width: 900px) {
     .container { flex-direction: column; gap: 0px; }
     .left-column { flex: none; width: 100%; position: static; }

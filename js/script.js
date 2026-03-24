@@ -3,13 +3,16 @@ const supabaseUrl = 'https://mjfkrdrhalgawkkltcrm.supabase.co';
 const supabaseKey = 'sb_publishable_g6v_qlWBAPuQ9818Ypxp6A_pYH6BBAb';
 const clienteSupabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-const SENHA_CORRETA = "South@1234";
+// A senha "South@1234" embaralhada em Base64 para não aparecer no Inspecionar
+const SENHA_EMBARALHADA = "U291dGhAMTIzNA=="; 
 let editingId = null;
 
 // ====== SISTEMA DE LOGIN E SAÍDA ======
 function verificarAcesso() {
     const senhaDigitada = document.getElementById('senhaAdmin').value;
-    if (senhaDigitada === SENHA_CORRETA) {
+    
+    // O btoa() pega o que a pessoa digitou e embaralha na mesma lógica para comparar
+    if (btoa(senhaDigitada) === SENHA_EMBARALHADA) {
         sessionStorage.setItem('adminLogado', 'true');
         liberarSite();
     } else {
