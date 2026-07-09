@@ -1,90 +1,104 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de Conhecimento - South Tecnologia</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/script.js" defer></script>
+    <title>Central de Passo a Passo - South</title>
+    
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loginOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #dceefb; z-index: 2000; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(10px);">
-    <div class="card" style="width: 90%; max-width: 400px; text-align: center; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.5);">
-        <img src="logo.png" style="height: 90px; width: 90px; border-radius: 50%; margin-bottom: 15px; background: white; padding: 12px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: contain; border: 1px solid rgba(0,0,0,0.05);">
-        <h2 style="color: #1e3a8a; margin-bottom: 10px; font-weight: 800;">Acesso Restrito</h2>
-        <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Digite a senha do setor para acessar a Central.</p>
-        
-        <form id="formLoginSetor" onsubmit="event.preventDefault(); verificarAcesso();">
-            <input type="text" name="username" value="Setor_South" autocomplete="username" style="position: absolute; opacity: 0; left: -9999px;">
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box">
+            <h2 class="login-title">Acesso Restrito</h2>
+            <p class="login-subtitle">Insira a password para aceder ao sistema.</p>
+            <div class="password-wrapper">
+                <input type="password" id="senhaAdmin" placeholder="Password de acesso">
+                <span id="togglePassword" class="password-toggle" onclick="alternarSenha()">Mostrar</span>
+            </div>
+            <p id="erroSenha" class="login-error-message hidden">Password incorreta!</p>
+            <button class="btn-login" onclick="verificarAcesso()">Entrar no Sistema</button>
+        </div>
+    </div>
+
+    <div class="main-wrapper hidden">
+        <header class="header-south">
+            <div class="header-left">
+                <h1>Central de Passo a Passo</h1>
+            </div>
+            <div class="botoes-topo">
+                <button class="btn-back" onclick="window.history.back()">Voltar</button>
+                <button class="btn-logout" onclick="sairDoSistema()">Sair</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="left-column">
+                <div class="card">
+                    <h3 id="formTitle">Cadastrar Novo Processo</h3>
+                    
+                    <label class="form-label">Empresa / Integração</label>
+                    <select id="empresaCadastro">
+                        <option value="Plamev">Plamev</option>
+                        <option value="Aeasy">Aeasy</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Meep">Meep</option>
+                    </select>
+                    
+                    <label class="form-label">Título do Passo a Passo</label>
+                    <input type="text" id="tituloProcesso" placeholder="Ex: Tutorial para cadastro de Modelos">
+
+                    <label class="form-label">Descrição Detalhada</label>
+                    <div id="editor-container" style="height: 250px; background: white;"></div>
+
+                    <button id="saveUpdateBtn" class="btn-save" onclick="handleSaveUpdate()">Salvar no Sistema</button>
+                    <button id="cancelEditBtn" class="btn-cancel hidden" onclick="cancelarEdicao()">Cancelar Edição</button>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="card card-filters">
+                    <div class="filtros-container">
+                        <div class="filter-group">
+                            <label>Filtrar por Empresa</label>
+                            <select id="filtroEmpresa" onchange="renderizarLista()">
+                                <option value="todos">Nenhuma selecionada (Escolha uma opção)</option>
+                                <option value="Plamev">Plamev</option>
+                                <option value="Aeasy">Aeasy</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Meep">Meep</option>
+                            </select>
+                        </div>
+                        <div class="filter-group-large">
+                            <label>Pesquisar Título</label>
+                            <input type="text" id="buscaProcesso" onkeyup="renderizarLista()" placeholder="Procurar passo a passo...">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="listaContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalVisualizar" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharModal()">&times;</span>
+            <div class="modal-header">
+                <span id="modalTag" class="tag"></span>
+            </div>
+            <h2 id="modalTitulo"></h2>
             
-            <div style="position: relative; width: 100%;">
-                <input type="password" id="senhaAdmin" name="password" placeholder="Senha de Acesso" autocomplete="current-password" 
-                       style="text-align: center; font-size: 18px; letter-spacing: 3px; border: 1.5px solid #e2e8f0; padding: 15px; width: 100%; border-radius: 8px; background: #f8fafc; color: #333; padding-right: 45px;">
-                <span id="togglePassword" onclick="alternarSenha()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px; color: #64748b; user-select: none;">👁️</span>
-            </div>
-            <button type="submit" style="margin-top: 15px; width: 100%; padding: 15px; background: #2563eb; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.04);">Entrar no Sistema</button>
-        </form>
-        <p id="erroSenha" style="color: #ef4444; font-size: 13px; margin-top: 10px; display: none; font-weight: bold;">❌ Senha incorreta!</p>
-    </div>
-</div>
-
-<div class="main-wrapper" style="display: none;">
-    <header class="header-south">
-        <div class="header-left">
-            <img src="logo.png" alt="South Tecnologia" class="logo-img">
-            <h1>Central de Passo a Passo</h1>
+            <div id="modalDescricao" class="modal-body"></div>
+            
+            <button class="btn-copy" onclick="copiarConteudo()">Copiar Texto Simples</button>
         </div>
-        <button onclick="sairDoSistema()" class="btn-logout">Sair</button>
-    </header>
-
-    <div class="container">
-        
-        <div class="left-column">
-            <div class="card card-cadastro">
-                <h3 id="formTitle">➕ Cadastrar Novo Processo</h3>
-                <select id="empresaCadastro">
-                    <option value="Aeasy" class="opt-aeasy">Aeasy</option>
-                    <option value="Plamev" class="opt-plamev">Plamev</option>
-                    <option value="Premium" class="opt-premium">Premium</option>
-                    <option value="Meep" class="opt-meep">Meep</option> </select>
-                <input type="text" id="tituloProcesso" placeholder="Título do Passo a Passo (ex: Cadastro de Categoria)">
-                <textarea id="descricaoProcesso" placeholder="Escreva o passo a passo detalhado aqui..." rows="10"></textarea>
-                <div style="display: flex; gap: 10px;">
-                    <button id="saveUpdateBtn" onclick="handleSaveUpdate()">Salvar no Sistema</button>
-                    <button id="cancelEditBtn" onclick="cancelarEdicao()" style="background-color: #666; display: none;">Cancelar</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="right-column">
-            <div class="card card-filtros">
-                <h3 style="margin-bottom: 15px;">🔍 Filtrar e Pesquisar</h3>
-                <div class="filtros-container">
-                    <select id="filtroEmpresa" onchange="renderizarLista()">
-                        <option value="todos">Selecione uma Empresa</option>
-                        <option value="Aeasy" class="opt-aeasy">Aeasy</option>
-                        <option value="Plamev" class="opt-plamev">Plamev</option>
-                        <option value="Premium" class="opt-premium">Premium</option>
-                        <option value="Meep" class="opt-meep">Meep</option> </select>
-                    <input type="text" id="buscaProcesso" placeholder="🔍 Digite para buscar..." onkeyup="renderizarLista()">
-                </div>
-            </div>
-            <div id="listaContainer"></div>
-        </div>
-
     </div>
-</div>
 
-<div id="modalVisualizar" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="fecharModal()">&times;</span>
-        <span id="modalTag" class="tag">Empresa</span>
-        <h2 id="modalTitulo">Título</h2>
-        <div id="modalDescricao" class="modal-body"></div>
-        <button class="btn-copiar" onclick="copiarConteudo()">📋 Copiar Passo a Passo</button>
-    </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

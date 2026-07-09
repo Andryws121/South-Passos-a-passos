@@ -13,115 +13,50 @@
 
 * { box-sizing: border-box; }
 body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); margin: 0; padding: 30px 20px; display: flex; justify-content: center; }
+.hidden { display: none !important; }
 
+/* ====== LAYOUT PRINCIPAL ====== */
 .main-wrapper { width: 100%; max-width: 1200px; } 
 
-/* ====== NOVO HEADER HORIZONTAL ====== */
-.header-south {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px 20px 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+.header-south { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px 20px 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
+.header-south .header-left { display: flex; align-items: center; gap: 15px; }
+.header-south h1 { color: #1e3a8a; font-size: 20px; font-weight: 800; margin: 0; }
 
-.header-south .header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+.botoes-topo { display: flex; gap: 10px; }
+.btn-logout { width: auto; padding: 8px 16px; background: transparent; border: 1.5px solid #ef4444; color: #ef4444; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s; }
+.btn-logout:hover { background: rgba(239, 68, 68, 0.1); }
+.btn-back { width: auto; padding: 8px 16px; background: #f1f5f9; border: 1.5px solid #cbd5e1; color: #475569; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s; }
+.btn-back:hover { background: #e2e8f0; color: #1e293b; }
 
-.header-south .logo-img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: #fff;
-    padding: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    object-fit: contain;
-}
-
-.header-south h1 {
-    color: #1e3a8a;
-    font-size: 20px;
-    font-weight: 800;
-    margin: 0;
-}
-
-/* ====== BOTÕES DO TOPO (SAIR E VOLTAR) ====== */
-.botoes-topo {
-    display: flex;
-    gap: 10px;
-}
-
-.btn-logout {
-    width: auto;
-    padding: 8px 16px;
-    background: transparent;
-    border: 1.5px solid #ef4444;
-    color: #ef4444;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 13px;
-    transition: 0.2s;
-    box-shadow: none;
-}
-
-.btn-logout:hover {
-    background: rgba(239, 68, 68, 0.1);
-}
-
-.btn-back {
-    width: auto;
-    padding: 8px 16px;
-    background: #f1f5f9;
-    border: 1.5px solid #cbd5e1;
-    color: #475569;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 13px;
-    transition: 0.2s;
-    box-shadow: none;
-}
-
-.btn-back:hover {
-    background: #e2e8f0;
-    color: #1e293b;
-}
-
-/* ====== GRID LADO A LADO ====== */
-.container {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-.left-column {
-    flex: 0 0 400px;
-    position: sticky;
-    top: 30px;
-}
-
-.right-column {
-    flex: 1;
-    min-width: 0;
-}
-
+.container { display: flex; gap: 30px; align-items: flex-start; }
+.left-column { flex: 0 0 450px; position: sticky; top: 30px; }
+.right-column { flex: 1; min-width: 0; }
 .card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 25px; }
 h3 { margin-top: 0; color: #444; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
 
-/* ====== INPUTS E FILTROS MAIS INTUITIVOS ====== */
-input, select, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: var(--radius-sm); border: 1.5px solid #e2e8f0; background-color: #f8fafc; font-size: 16px; transition: 0.3s; }
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary-south-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background-color: #fff; }
+/* ====== FORMULÁRIOS E LABELS ====== */
+.form-label { font-weight: bold; color: #475569; font-size: 14px; display: block; margin-top: 15px; margin-bottom: 5px; }
+input, select { width: 100%; padding: 15px; margin: 10px 0; border-radius: var(--radius-sm); border: 1.5px solid #e2e8f0; background-color: #f8fafc; font-size: 16px; transition: 0.3s; }
+input:focus, select:focus { outline: none; border-color: var(--primary-south-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background-color: #fff; }
 
-button { width: 100%; padding: 15px; background: var(--primary-south-blue); color: white; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.2s; }
+/* ====== BOTÕES ====== */
+button { width: 100%; padding: 15px; background: var(--primary-south-blue); color: white; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 15px; }
 button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,235,0.2); }
+.btn-save { margin-top: 20px; }
+.btn-cancel { margin-top: 10px; background: #64748b; }
+.btn-cancel:hover { background: #475569; box-shadow: 0 5px 15px rgba(71,85,105,0.2); }
+.btn-copy { background: #10b981; margin-top: 10px; }
+.btn-copy:hover { background: #059669; box-shadow: 0 5px 15px rgba(16,185,129,0.2); }
 
+/* ====== FILTROS ====== */
+.card-filters { padding-bottom: 15px; margin-bottom: 20px; }
 .filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
+.filter-group { flex: 1; min-width: 150px; }
+.filter-group-large { flex: 1.5; min-width: 200px; }
+.filtros-container label { font-weight: bold; font-size: 12px; color: #64748b; text-transform: uppercase; }
+.filtros-container select, .filtros-container input { margin-top: 5px; padding: 12px; }
+
+/* ====== TAGS E CARDS ====== */
 .tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
 .badge-plamev { background: var(--color-plamev); }
 .badge-aeasy { background: var(--color-aeasy); } 
@@ -130,55 +65,78 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 
 .passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
 .passo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.passo-card-header { display: flex; justify-content: space-between; align-items: center; }
+.passo-card-time { font-size: 12px; color: #64748b; font-weight: bold; }
+.passo-card-title { font-size: 1.2em; font-weight: bold; margin-top: 10px; color: #1e3a8a; }
+.passo-card-actions { display: flex; gap: 10px; margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+.passo-card-actions button { flex: 1; padding: 10px; border-radius: 6px; font-size: 14px; }
+.passo-card-actions .btn-view { background: #004a99; } 
+.passo-card-actions .btn-view:hover { background: #003b7a; transform: none; box-shadow: none; }
+.passo-card-actions .btn-edit { background: #10b981; } 
+.passo-card-actions .btn-edit:hover { background: #059669; transform: none; box-shadow: none; }
+.passo-card-actions .btn-delete { background: #ef4444; } 
+.passo-card-actions .btn-delete:hover { background: #dc2626; transform: none; box-shadow: none; }
 
-/* ====== MODAL COM TAMANHO FIXO E SCROLL INTERNO ====== */
-.modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 15px; }
+.placeholder-card, .loading-message, .empty-message { text-align: center; padding: 40px 20px; background: transparent; border: 2px dashed #cbd5e1; border-radius: 12px; margin-top: 10px; color: #64748b; font-size: 15px; font-weight: bold; }
+.loading-message, .empty-message { border: none; }
 
-.modal-content { 
-    background: #fff; 
-    padding: 30px; 
-    border-radius: var(--radius-lg); 
-    width: 100%; 
-    max-width: 700px; /* Tamanho padrão mais largo para leitura */
-    max-height: 90vh; /* A caixa branca nunca passa de 90% da tela */
-    display: flex; 
-    flex-direction: column; /* Permite que o corpo do texto role e o botão fique fixo */
-    position: relative; 
+/* ====== EDITOR QUILL (Ajustes Visuais) ====== */
+.ql-container { font-size: 15px; font-family: 'Segoe UI', sans-serif; border-radius: 0 0 var(--radius-sm) var(--radius-sm); border-color: #e2e8f0 !important; }
+.ql-toolbar { background-color: #f1f5f9; border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-color: #e2e8f0 !important; margin-top: 10px; }
+.ql-editor { min-height: 200px; max-height: 350px; overflow-y: auto; }
+
+/* Garante que prints colados no editor ou visualizados no modal fiquem organizados */
+.ql-editor img, .modal-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin: 15px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+/* ====== MODAL PADRONIZADO COM SCROLLBAR ====== */
+.modal { position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; padding: 15px; }
+.modal-content { background: #fff; padding: 30px; border-radius: var(--radius-lg); width: 100%; max-width: 750px; max-height: 95vh; display: flex; flex-direction: column; position: relative; }
+.modal-header { margin-bottom: 10px; }
+.modal-content h2 { color: #1e3a8a; margin-top: 5px; }
+
+/* Configuração da Barra de Rolagem da Imagem que você pediu */
 .modal-body { 
     background: #f8fafc; 
     padding: 20px 25px; 
     border-radius: 8px; 
     margin: 15px 0; 
-    white-space: pre-wrap; 
-    overflow-y: auto; /* Cria a barra de rolagem apenas no texto */
-    flex-grow: 1; /* Ocupa o espaço restante */
-    max-height: 60vh; /* Trava o tamanho do texto para acionar o scroll */
-    font-size: 15px;
-    line-height: 1.6;
+    max-height: 450px; /* Limite que força a barra aparecer */
+    overflow-y: auto !important; /* Mostra a barra se o texto for grande */
+    font-size: 15px; 
+    line-height: 1.6; 
 }
 
-/* Estilizando a barra de rolagem do modal para ficar bonita */
-.modal-body::-webkit-scrollbar { width: 8px; }
-.modal-body::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
-.modal-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-.modal-body::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+/* Estilizando a scrollbar (Fica moderna e bonita) */
+.modal-body::-webkit-scrollbar { width: 10px; display: block; }
+.modal-body::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; }
+.modal-body::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 8px; border: 2px solid #e2e8f0; }
+.modal-body::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
 .close-modal { position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; }
 .close-modal:hover { color: #333; }
 
-/* ====== CORES DE FUNDO DAS OPÇÕES ====== */
-.opt-aeasy { background-color: var(--color-aeasy); color: white; font-weight: bold; }
-.opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
-.opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
-.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; }
+/* ====== TELA DE LOGIN ====== */
+.login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--main-bg); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+.login-box { background: #fff; padding: 40px; border-radius: 16px; box-shadow: var(--shadow-md); width: 100%; max-width: 400px; text-align: center; }
+.login-title { color: #1e3a8a; margin-top: 0; }
+.login-subtitle { color: #64748b; margin-bottom: 20px; }
+.password-wrapper { position: relative; margin-bottom: 20px; }
+.password-wrapper input { letter-spacing: 3px; }
+.password-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: bold; color: var(--primary-south-blue); cursor: pointer; }
+.login-error-message { color: #ef4444; font-weight: bold; margin-top: -10px; margin-bottom: 15px; }
+.btn-login { width: 100%; }
 
-/* ====== RESPONSIVO PARA CELULAR ====== */
+/* ====== RESPONSIVO ====== */
 @media (max-width: 900px) {
     .container { flex-direction: column; gap: 0px; }
     .left-column { flex: none; width: 100%; position: static; }
     .right-column { width: 100%; }
-    .filtros-container select, .filtros-container input { flex: 1 1 100%; }
     .modal-content { padding: 20px; max-height: 95vh; }
 }
