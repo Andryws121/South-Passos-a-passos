@@ -30,7 +30,21 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
 
 .container { display: flex; gap: 30px; align-items: flex-start; }
 .left-column { flex: 0 0 450px; position: sticky; top: 30px; }
-.right-column { flex: 1; min-width: 0; }
+
+/* ====== COLUNA DIREITA (Lista com Barra de Rolagem) ====== */
+.right-column { 
+    flex: 1; 
+    min-width: 0; 
+    max-height: 85vh; /* Limita a altura para ativar a barra */
+    overflow-y: auto; /* Ativa a barra de rolagem lateral na lista */
+    padding-right: 15px;
+}
+/* Estilizando a barra da lista */
+.right-column::-webkit-scrollbar { width: 8px; }
+.right-column::-webkit-scrollbar-track { background: transparent; }
+.right-column::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.right-column::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
 .card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 25px; }
 h3 { margin-top: 0; color: #444; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
 
@@ -80,10 +94,24 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .placeholder-card, .loading-message, .empty-message { text-align: center; padding: 40px 20px; background: transparent; border: 2px dashed #cbd5e1; border-radius: 12px; margin-top: 10px; color: #64748b; font-size: 15px; font-weight: bold; }
 .loading-message, .empty-message { border: none; }
 
-/* ====== EDITOR QUILL (Ajustes Visuais) ====== */
+/* ====== EDITOR QUILL & ESPAÇAMENTO DE TEXTO ====== */
 .ql-container { font-size: 15px; font-family: 'Segoe UI', sans-serif; border-radius: 0 0 var(--radius-sm) var(--radius-sm); border-color: #e2e8f0 !important; }
 .ql-toolbar { background-color: #f1f5f9; border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-color: #e2e8f0 !important; margin-top: 10px; }
 .ql-editor { min-height: 200px; max-height: 350px; overflow-y: auto; }
+
+/* Adiciona margens automáticas para o texto não ficar colado e quebrar certo */
+.ql-editor p, .modal-body p {
+    margin-bottom: 18px !important; /* Espaço entre parágrafos */
+    line-height: 1.6;
+    word-break: break-word; /* Impede que links longos quebrem a tela */
+}
+.ql-editor ul, .ql-editor ol, .modal-body ul, .modal-body ol {
+    margin-bottom: 18px;
+    padding-left: 20px;
+}
+.ql-editor li, .modal-body li {
+    margin-bottom: 8px;
+}
 
 /* Garante que prints colados fiquem bonitos */
 .ql-editor img, .modal-body img {
@@ -101,7 +129,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .modal-header { margin-bottom: 10px; }
 .modal-content h2 { color: #1e3a8a; margin-top: 5px; }
 
-/* Barra de rolagem visível e estilizada */
+/* Barra de rolagem visível e estilizada para o modal */
 .modal-body { 
     background: #f8fafc; 
     padding: 20px 25px; 
@@ -135,6 +163,6 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 @media (max-width: 900px) {
     .container { flex-direction: column; gap: 0px; }
     .left-column { flex: none; width: 100%; position: static; }
-    .right-column { width: 100%; }
+    .right-column { width: 100%; max-height: none; overflow-y: visible; }
     .modal-content { padding: 20px; max-height: 95vh; }
 }
