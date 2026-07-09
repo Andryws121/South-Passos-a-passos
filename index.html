@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central de Passo a Passo - South</title>
+    <title>Central de Passos - South</title>
     
-    <!-- CSS do Editor Visual Quill -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     
-    <!-- Seu CSS (Atualizado com a pasta css/) -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- OVERLAY DE LOGIN -->
     <div id="loginOverlay" class="login-overlay">
         <div class="login-box">
             <h2 class="login-title">Acesso Restrito</h2>
@@ -27,7 +24,6 @@
         </div>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <div class="main-wrapper hidden">
         <header class="header-south">
             <div class="header-left">
@@ -56,7 +52,6 @@
                     <input type="text" id="tituloProcesso" placeholder="Ex: Tutorial para cadastro de Modelos">
 
                     <label class="form-label">Descrição Detalhada</label>
-                    <!-- CONTAINER DO EDITOR QUILL (Negrito, Imagens, etc) -->
                     <div id="editor-container" style="height: 250px; background: white;"></div>
 
                     <button id="saveUpdateBtn" class="btn-save" onclick="handleSaveUpdate()">Salvar no Sistema</button>
@@ -89,7 +84,6 @@
         </div>
     </div>
 
-    <!-- MODAL DE VISUALIZAÇÃO -->
     <div id="modalVisualizar" class="modal hidden">
         <div class="modal-content">
             <span class="close-modal" onclick="fecharModal()">&times;</span>
@@ -98,18 +92,15 @@
             </div>
             <h2 id="modalTitulo"></h2>
             
-            <!-- CORPO DO MODAL (Com a barra de rolagem estilizada) -->
             <div id="modalDescricao" class="modal-body"></div>
             
             <button class="btn-copy" onclick="copiarConteudo()">Copiar Texto Simples</button>
         </div>
     </div>
 
-    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     
-    <!-- Seu Script -->
     <script src="script.js"></script>
 </body>
 </html>
