@@ -26,7 +26,7 @@ const DOMElements = {
     modalDescricao: document.getElementById('modalDescricao'),
 };
 
-// ====== INICIALIZAÇÃO DO EDITOR VISUAL (Negrito + Imagens) ======
+// ====== INICIALIZAÇÃO DO EDITOR VISUAL (Quill) ======
 const quill = new Quill('#editor-container', {
     theme: 'snow',
     placeholder: 'Escreva o passo a passo aqui... (Dica: Você pode colar prints com Ctrl+V)',
@@ -34,7 +34,7 @@ const quill = new Quill('#editor-container', {
         toolbar: [
             ['bold', 'italic', 'underline'],              
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],   
-            ['image'], // Botão de inserir imagem adicionado!
+            ['image'], 
             ['clean']                                     
         ]
     }
@@ -82,7 +82,7 @@ function sairDoSistema() {
 // ====== FUNÇÕES DE CADASTRO E EDIÇÃO ======
 function limparFormulario() {
     DOMElements.tituloProcesso.value = ""; 
-    quill.root.innerHTML = ""; // Limpa o texto e imagens do editor
+    quill.root.innerHTML = ""; 
     editingId = null; 
     DOMElements.formTitle.innerText = "Cadastrar Novo Processo";
     DOMElements.saveUpdateBtn.innerText = "Salvar no Sistema";
@@ -98,11 +98,8 @@ function handleSaveUpdate() {
 async function salvarPasso() {
     const empresa = DOMElements.empresaCadastro.value;
     const titulo = DOMElements.tituloProcesso.value;
-    
-    // Pega todo o HTML (texto formatado, negrito e imagens)
     const descricao = quill.root.innerHTML; 
     
-    // Verifica se o texto puro está vazio
     if (!titulo || quill.getText().trim().length === 0) {
         return alert("Por favor, preencha o título e a descrição!");
     }
@@ -120,7 +117,7 @@ async function salvarPasso() {
 async function executarAtualizacao(id) {
     const empresa = DOMElements.empresaCadastro.value;
     const titulo = DOMElements.tituloProcesso.value;
-    const descricao = quill.root.innerHTML; // Pega HTML formatado e imagens
+    const descricao = quill.root.innerHTML; 
     
     const { error } = await clienteSupabase.from('Passo a Passo').update({ empresa, titulo, descricao }).eq('id', id);
     if (!error) { 
@@ -205,7 +202,6 @@ async function abrirModal(id) {
         DOMElements.modalTag.innerText = p.empresa;
         DOMElements.modalTitulo.innerText = p.titulo;
         
-        // Renderiza o texto com tags de formatação e imagens
         DOMElements.modalDescricao.innerHTML = p.descricao || "Sem descrição.";
         
         DOMElements.modal.classList.remove('hidden'); 
@@ -215,7 +211,6 @@ async function abrirModal(id) {
 function fecharModal() { DOMElements.modal.classList.add('hidden'); }
 
 function copiarConteudo() {
-    // Para WhatsApp, copiamos apenas o texto puro (sem as tags HTML de negrito ou imagens)
     const titulo = DOMElements.modalTitulo.innerText;
     const descricaoLimpa = DOMElements.modalDescricao.innerText;
     const txt = `*${titulo}*\n\n${descricaoLimpa}`;
@@ -230,7 +225,6 @@ async function editarPasso(id) {
         DOMElements.empresaCadastro.value = passo.empresa;
         DOMElements.tituloProcesso.value = passo.titulo;
         
-        // Devolve o conteúdo (com imagens e formatação) para o editor
         quill.root.innerHTML = passo.descricao;
         
         DOMElements.formTitle.innerText = "Editar Processo";
