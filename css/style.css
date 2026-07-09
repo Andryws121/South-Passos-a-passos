@@ -8,7 +8,7 @@
     --color-plamev: #1e3a8a;
     --color-aeasy: #6b7280;
     --color-premium: #f97316;
-    --color-meep: #ef4444; /* Nova cor Meep (Vermelho Profissional) */
+    --color-meep: #ef4444; 
 }
 
 * { box-sizing: border-box; }
@@ -50,7 +50,12 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
     margin: 0;
 }
 
-/* ====== BOTÃO SAIR ESTILIZADO ====== */
+/* ====== BOTÕES DO TOPO (SAIR E VOLTAR) ====== */
+.botoes-topo {
+    display: flex;
+    gap: 10px;
+}
+
 .btn-logout {
     width: auto;
     padding: 8px 16px;
@@ -67,6 +72,25 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
 
 .btn-logout:hover {
     background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-back {
+    width: auto;
+    padding: 8px 16px;
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    color: #475569;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+    box-shadow: none;
+}
+
+.btn-back:hover {
+    background: #e2e8f0;
+    color: #1e293b;
 }
 
 /* ====== GRID LADO A LADO ====== */
@@ -90,23 +114,57 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
 .card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 25px; }
 h3 { margin-top: 0; color: #444; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
 
-input, select, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: var(--radius-sm); border: 1.5px solid #e2e8f0; background-color: #f8fafc; font-size: 16px; }
+/* ====== INPUTS E FILTROS MAIS INTUITIVOS ====== */
+input, select, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: var(--radius-sm); border: 1.5px solid #e2e8f0; background-color: #f8fafc; font-size: 16px; transition: 0.3s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary-south-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background-color: #fff; }
+
 button { width: 100%; padding: 15px; background: var(--primary-south-blue); color: white; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; transition: 0.2s; }
 button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,235,0.2); }
 
 .filtros-container { display: flex; gap: 15px; flex-wrap: wrap; }
 .tag { font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: white; }
 .badge-plamev { background: var(--color-plamev); }
-.badge-aeasy { background: var(--color-aeasy); } /* Ajuste Aeasy */
+.badge-aeasy { background: var(--color-aeasy); } 
 .badge-premium { background: var(--color-premium); }
-.badge-meep { background: var(--color-meep); } /* Nova Tag Meep */
+.badge-meep { background: var(--color-meep); } 
 
 .passo-card { background: #fff; padding: 25px; border-radius: var(--radius-lg); margin-bottom: 20px; border: 1px solid #f1f5f9; transition: 0.3s; }
 .passo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
+/* ====== MODAL COM TAMANHO FIXO E SCROLL INTERNO ====== */
 .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); justify-content: center; align-items: center; padding: 15px; }
-.modal-content { background: #fff; padding: 35px; border-radius: var(--radius-lg); width: 100%; max-width: 650px; position: relative; }
-.modal-body { background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0; white-space: pre-wrap; }
+
+.modal-content { 
+    background: #fff; 
+    padding: 30px; 
+    border-radius: var(--radius-lg); 
+    width: 100%; 
+    max-width: 700px; /* Tamanho padrão mais largo para leitura */
+    max-height: 90vh; /* A caixa branca nunca passa de 90% da tela */
+    display: flex; 
+    flex-direction: column; /* Permite que o corpo do texto role e o botão fique fixo */
+    position: relative; 
+}
+
+.modal-body { 
+    background: #f8fafc; 
+    padding: 20px 25px; 
+    border-radius: 8px; 
+    margin: 15px 0; 
+    white-space: pre-wrap; 
+    overflow-y: auto; /* Cria a barra de rolagem apenas no texto */
+    flex-grow: 1; /* Ocupa o espaço restante */
+    max-height: 60vh; /* Trava o tamanho do texto para acionar o scroll */
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Estilizando a barra de rolagem do modal para ficar bonita */
+.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+.modal-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.modal-body::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
 .close-modal { position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; }
 .close-modal:hover { color: #333; }
 
@@ -114,7 +172,7 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .opt-aeasy { background-color: var(--color-aeasy); color: white; font-weight: bold; }
 .opt-plamev { background-color: var(--color-plamev); color: white; font-weight: bold; }
 .opt-premium { background-color: var(--color-premium); color: white; font-weight: bold; }
-.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; } /* Novo Fundo Meep */
+.opt-meep { background-color: var(--color-meep); color: white; font-weight: bold; }
 
 /* ====== RESPONSIVO PARA CELULAR ====== */
 @media (max-width: 900px) {
@@ -122,4 +180,5 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
     .left-column { flex: none; width: 100%; position: static; }
     .right-column { width: 100%; }
     .filtros-container select, .filtros-container input { flex: 1 1 100%; }
+    .modal-content { padding: 20px; max-height: 95vh; }
 }
