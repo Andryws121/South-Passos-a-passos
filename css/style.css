@@ -18,11 +18,28 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
 /* ====== LAYOUT PRINCIPAL ====== */
 .main-wrapper { width: 100%; max-width: 1200px; } 
 
-.header-south { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px 20px 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
-.header-south .header-left { display: flex; align-items: center; gap: 15px; }
+.header-south { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 20px 20px 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
+
+/* Estrutura modificada para a logo ficar abaixo do título */
+.header-south .header-left { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 8px; 
+}
 .header-south h1 { color: #1e3a8a; font-size: 20px; font-weight: 800; margin: 0; }
 
-.botoes-topo { display: flex; gap: 10px; }
+/* Estilo da Logo Redonda */
+.logo-south { 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ffffff; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+.botoes-topo { display: flex; gap: 10px; margin-top: 5px; }
 .btn-logout { width: auto; padding: 8px 16px; background: transparent; border: 1.5px solid #ef4444; color: #ef4444; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s; }
 .btn-logout:hover { background: rgba(239, 68, 68, 0.1); }
 .btn-back { width: auto; padding: 8px 16px; background: #f1f5f9; border: 1.5px solid #cbd5e1; color: #475569; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s; }
@@ -121,17 +138,17 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .modal-header { margin-bottom: 10px; }
 .modal-content h2 { color: #1e3a8a; margin-top: 5px; }
 
-/* Barra de rolagem visível e estilizada para o modal (Forçada a aparecer e com parágrafos) */
+/* Barra de rolagem forçada a aparecer e pré-formatação de texto */
 .modal-body { 
     background: #f8fafc; 
     padding: 20px 25px; 
     border-radius: 8px; 
     margin: 15px 0; 
     max-height: 450px;
-    overflow-y: scroll !important; /* MUDANÇA AQUI: Scroll força a barra a sempre aparecer */
+    overflow-y: scroll !important; 
     font-size: 15px; 
     line-height: 1.6; 
-    white-space: pre-wrap; /* MUDANÇA AQUI: Força o espaçamento de parágrafos dos textos antigos */
+    white-space: pre-wrap; 
 }
 .modal-body::-webkit-scrollbar { width: 10px; display: block; }
 .modal-body::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; }
