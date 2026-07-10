@@ -35,11 +35,10 @@ body { font-family: 'Segoe UI', sans-serif; background-color: var(--main-bg); ma
 .right-column { 
     flex: 1; 
     min-width: 0; 
-    max-height: 85vh; /* Limita a altura para ativar a barra */
-    overflow-y: auto; /* Ativa a barra de rolagem lateral na lista */
+    max-height: 85vh;
+    overflow-y: auto; 
     padding-right: 15px;
 }
-/* Estilizando a barra da lista */
 .right-column::-webkit-scrollbar { width: 8px; }
 .right-column::-webkit-scrollbar-track { background: transparent; }
 .right-column::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
@@ -99,21 +98,14 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .ql-toolbar { background-color: #f1f5f9; border-radius: var(--radius-sm) var(--radius-sm) 0 0; border-color: #e2e8f0 !important; margin-top: 10px; }
 .ql-editor { min-height: 200px; max-height: 350px; overflow-y: auto; }
 
-/* Adiciona margens automáticas para o texto não ficar colado e quebrar certo */
 .ql-editor p, .modal-body p {
-    margin-bottom: 18px !important; /* Espaço entre parágrafos */
+    margin-bottom: 18px !important; 
     line-height: 1.6;
-    word-break: break-word; /* Impede que links longos quebrem a tela */
+    word-break: break-word; 
 }
-.ql-editor ul, .ql-editor ol, .modal-body ul, .modal-body ol {
-    margin-bottom: 18px;
-    padding-left: 20px;
-}
-.ql-editor li, .modal-body li {
-    margin-bottom: 8px;
-}
+.ql-editor ul, .ql-editor ol, .modal-body ul, .modal-body ol { margin-bottom: 18px; padding-left: 20px; }
+.ql-editor li, .modal-body li { margin-bottom: 8px; }
 
-/* Garante que prints colados fiquem bonitos */
 .ql-editor img, .modal-body img {
     max-width: 100%;
     height: auto;
@@ -129,16 +121,17 @@ button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,23
 .modal-header { margin-bottom: 10px; }
 .modal-content h2 { color: #1e3a8a; margin-top: 5px; }
 
-/* Barra de rolagem visível e estilizada para o modal */
+/* Barra de rolagem visível e estilizada para o modal (Forçada a aparecer e com parágrafos) */
 .modal-body { 
     background: #f8fafc; 
     padding: 20px 25px; 
     border-radius: 8px; 
     margin: 15px 0; 
     max-height: 450px;
-    overflow-y: auto !important; 
+    overflow-y: scroll !important; /* MUDANÇA AQUI: Scroll força a barra a sempre aparecer */
     font-size: 15px; 
     line-height: 1.6; 
+    white-space: pre-wrap; /* MUDANÇA AQUI: Força o espaçamento de parágrafos dos textos antigos */
 }
 .modal-body::-webkit-scrollbar { width: 10px; display: block; }
 .modal-body::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 8px; }
